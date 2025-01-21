@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   annotations:
     argocd.argoproj.io/tracking-id: keycloak:apps/Deployment:keycloak/keycloak
+    argocd.argoproj.io/sync-wave: "3"
   labels:
     app: keycloak
   name: keycloak

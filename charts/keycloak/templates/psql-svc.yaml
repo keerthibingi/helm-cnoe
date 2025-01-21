@@ -3,6 +3,7 @@ kind: Service
 metadata:
   annotations:
     argocd.argoproj.io/tracking-id: keycloak:/Service:keycloak/postgresql
+    argocd.argoproj.io/sync-wave: "1"
   labels:
     app: postgresql
   name: postgresql

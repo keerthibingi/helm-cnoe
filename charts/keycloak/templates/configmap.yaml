@@ -7,4 +7,5 @@ kind: ConfigMap
 metadata:
   annotations:
     argocd.argoproj.io/tracking-id: keycloak:/ConfigMap:keycloak/keycloak-config
+    argocd.argoproj.io/sync-wave: "1"
   name: keycloak-config
