@@ -36,10 +36,9 @@ global:
       ##
       adaptSecurityContext: auto
 postgresql:
-  enabled: true
-  host: <DB.HOST>
-  username: <DB.USERNAME>
+  host: postgresql
+  username: keycloak
 
 keycloak:
-  createIngress: true
-  host: <KEYCLOAK.OPSMX.COM>
+  createIngress: false
+  host: keycloak

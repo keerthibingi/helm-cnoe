@@ -20,8 +20,21 @@ spec:
         app: postgresql
     spec:
       containers:
-        - envFrom:
-            - secretRef:
+        - env:
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                key: POSTGRES_USER
+                name: postgresql-config
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: POSTGRES_PASSWORD
+                name: postgresql-config
+          - name: POSTGRES_DB
+            valueFrom:
+              secretKeyRef:
+                key: POSTGRES_DB
                 name: postgresql-config
           image: docker.io/library/postgres:15.3-alpine3.18
           imagePullPolicy: IfNotPresent
