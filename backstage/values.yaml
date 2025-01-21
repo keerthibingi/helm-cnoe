@@ -15,11 +15,11 @@ global:
   # </br> E.g. `imagePullSecrets: [myRegistryKeySecretName]`
   imagePullSecrets: []
 
+
 postgresql:
-  enabled: true
-  host: <DB.HOST>
-  username: <DB.USERNAME>
+  host: postgresql
+  username: backstage
 
 backstage:
-  createIngress: true
-  host: <BACKSTAGE.OPSMX.COM>
+  createIngress: false
+  host: backstage
