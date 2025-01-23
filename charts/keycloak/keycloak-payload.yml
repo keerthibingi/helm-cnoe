@@ -1,0 +1,95 @@
+apiVersion: v1
+data:
+  client-scope-groups-payload.json: |-
+    {
+        "name": "groups",
+        "description": "groups a user belongs to",
+        "attributes": {
+            "consent.screen.text": "Access to groups a user belongs to.",
+            "display.on.consent.screen": "true",
+            "include.in.token.scope": "true",
+            "gui.order": ""
+        },
+        "type": "default",
+        "protocol": "openid-connect"
+    }
+  group-admin-payload.json: '{"name":"admin"}'
+  group-base-user-payload.json: '{"name":"base-user"}'
+  group-mapper-payload.json: |-
+    {
+        "protocol": "openid-connect",
+        "protocolMapper": "oidc-group-membership-mapper",
+        "name": "groups",
+        "config": {
+          "claim.name": "groups",
+          "full.path": "false",
+          "id.token.claim": "true",
+          "access.token.claim": "true",
+          "userinfo.token.claim": "true"
+        }
+    }
+  realm-payload.json: '{"realm":"cnoe","enabled":true}'
+  user-password.json: |
+    {
+        "temporary": false,
+        "type": "password",
+        "value": "${USER1_PASSWORD}"
+    }
+  user-user1.json: |
+    {
+        "username": "user1",
+        "email": "",
+        "firstName": "user",
+        "lastName": "one",
+        "requiredActions": [],
+        "emailVerified": false,
+        "groups": [
+          "/admin"
+        ],
+        "enabled": true
+    }
+  user-user2.json: |
+    {
+        "username": "user2",
+        "email": "",
+        "firstName": "user",
+        "lastName": "two",
+        "requiredActions": [],
+        "emailVerified": false,
+        "groups": [
+          "/base-user"
+        ],
+        "enabled": true
+    }
+  client-payload-to-be-applied.json: |
+    {
+        "protocol": "openid-connect",
+        "clientId": "backstage",
+        "name": "Backstage Client",
+        "description": "Used for Backstage SSO",
+        "publicClient": false,
+        "authorizationServicesEnabled": false,
+        "serviceAccountsEnabled": false,
+        "implicitFlowEnabled": false,
+        "directAccessGrantsEnabled": true,
+        "standardFlowEnabled": true,
+        "frontchannelLogout": true,
+        "attributes": {
+          "saml_idp_initiated_sso_url_name": "",
+          "oauth2.device.authorization.grant.enabled": false,
+          "oidc.ciba.grant.enabled": false
+        },
+        "alwaysDisplayInConsole": false,
+        "rootUrl": "",
+        "baseUrl": "",
+        "redirectUris": [
+          "https://backstage.qabox.opsmx.org/api/auth/keycloak-oidc/handler/frame"
+        ],
+        "webOrigins": [
+          "/*"
+      ]
+    }
+  
+kind: ConfigMap
+metadata:
+  name: keycloak-payload

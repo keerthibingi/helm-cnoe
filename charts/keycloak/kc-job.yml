@@ -1,0 +1,37 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: keycloak-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: keycloak-job-container
+        image: quay.io/opsmxpublic/opa:curl-jq-kubectl
+        env:
+          - name: USER1_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: user1-password
+                name: keycloak-user-config
+          - name: ADMIN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: KEYCLOAK_ADMIN_PASSWORD
+                name: keycloak-config
+        command: ["/bin/bash", "-c",  "/scripts/keycloak.sh"] #["/bin/sh", "-c", "chmod +x /scripts/keycloak.sh && /scripts/keycloak.sh"]
+        volumeMounts:
+        - name: script-volume
+          mountPath: /scripts
+        - name: payload-volume
+          mountPath: /config-payloads
+      restartPolicy: Never
+      volumes:
+      - name: script-volume
+        configMap:
+          name: keycloak-script
+          defaultMode: 0755
+      - name: payload-volume
+        configMap:
+          name: keycloak-payload
+  backoffLimit: 4
