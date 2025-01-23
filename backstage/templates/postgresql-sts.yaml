@@ -1,8 +1,6 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  annotations:
-    argocd.argoproj.io/tracking-id: backstage:apps/StatefulSet:backstage/postgresql
   labels:
     app: postgresql
   name: postgresql
@@ -12,20 +10,31 @@ spec:
     whenScaled: Retain
   podManagementPolicy: OrderedReady
   replicas: 1
-  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: postgresql
   serviceName: service-postgresql
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: postgresql
     spec:
       containers:
-        - envFrom:
-            - secretRef:
+        - env:
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                key: POSTGRES_USER
+                name: postgresql-config
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: POSTGRES_PASSWORD
+                name: postgresql-config
+          - name: POSTGRES_DB
+            valueFrom:
+              secretKeyRef:
+                key: POSTGRES_DB
                 name: postgresql-config
           image: docker.io/library/postgres:15.3-alpine3.18
           imagePullPolicy: IfNotPresent
@@ -40,22 +49,11 @@ spec:
             requests:
               cpu: 100m
               memory: 300Mi
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: data
               subPath: postgress
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: postgresql
-  updateStrategy:
-    rollingUpdate:
-      partition: 0
-    type: RollingUpdate

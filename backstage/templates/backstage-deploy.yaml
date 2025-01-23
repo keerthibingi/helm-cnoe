@@ -27,6 +27,12 @@ spec:
             - packages/backend
             - --config
             - config/app-config.yaml
+          env:
+            - name: BS_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_PASSWORD
+                  name: postgresql-config
           envFrom:
             - secretRef:
                 name: backstage-env-vars
