@@ -83,7 +83,7 @@ data:
         "rootUrl": "",
         "baseUrl": "",
         "redirectUris": [
-          "https://backstage.qabox.opsmx.org/api/auth/keycloak-oidc/handler/frame"
+          "https://<BACKSTAGE.HOST.NAME>/api/auth/keycloak-oidc/handler/frame"
         ],
         "webOrigins": [
           "/*"
