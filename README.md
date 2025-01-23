@@ -16,10 +16,11 @@
 
 # Installing Backstage
 1. Create a namespace. Ex: kubectl create ns backstage
-2. cd backstage
-3. Edit values.yaml by passing host backtage(backstage ingress) and set createIngress to true. Pass the host-name that you entered in keycloak-payload.yml.
-4. Run the command `helm install bs . -f values.yaml -n backstage --timeout=10m `
-5. Create backstage-env-vars secret. Ex: `kubectl create secret generic backstage-env-vars --from-literal=ARGO_CD_URL=https://<ARGO_CD_URL>  --from-literal=ARGO_WORKFLOWS_URL=https://<ARGO_WF_URL> --from-literal=ARGOCD_AUTH_TOKEN=<ARGO_CD_TOKEN> --from-literal=BACKSTAGE_FRONTEND_URL=https://<BACKSTAGE_URL> --from-literal=KEYCLOAK_CLIENT_SECRET=<CLIENT_SECRET> --from-literal=KEYCLOAK_NAME_METADATA=https://<KEYCLOAK.HOST.NAME>/realms/cnoe/.well-known/openid-configuration --from-literal=POSTGRES_HOST=postgresql --from-literal=POSTGRES_PASSWORD=<psql_password> --from-literal=POSTGRES_PORT=5432 --from-literal=POSTGRES_USER=backstage -n backstage`. Get the postgres details from postgresql-config secret and decode.
-6. Restart backstage deployment if necessary. Ex: `kubectl rollout-restart deploy/backstage -n backstage`
-7. Once the pod is up and running, Login to the Backstage UI.
-8. Click on SignIn button. Username is user1 and get the password by decoding user1-password from keycloak-user-config secret Ex: `kubectl -n keycloak get secret keycloak-user-config -o jsonpath='{.data.user1-password}' | base64 -d; echo`
+2. cd ../..
+3. cd backstage
+4. Edit values.yaml by passing host backtage(backstage ingress) and set createIngress to true. Pass the host-name that you entered in keycloak-payload.yml.
+5. Run the command `helm install bs . -f values.yaml -n backstage --timeout=10m `
+6. Create backstage-env-vars secret. Ex: `kubectl create secret generic backstage-env-vars --from-literal=ARGO_CD_URL=https://<ARGO_CD_URL>  --from-literal=ARGO_WORKFLOWS_URL=https://<ARGO_WF_URL> --from-literal=ARGOCD_AUTH_TOKEN=<ARGO_CD_TOKEN> --from-literal=BACKSTAGE_FRONTEND_URL=https://<BACKSTAGE_URL> --from-literal=KEYCLOAK_CLIENT_SECRET=<CLIENT_SECRET> --from-literal=KEYCLOAK_NAME_METADATA=https://<KEYCLOAK.HOST.NAME>/realms/cnoe/.well-known/openid-configuration --from-literal=POSTGRES_HOST=postgresql --from-literal=POSTGRES_PASSWORD=<psql_password> --from-literal=POSTGRES_PORT=5432 --from-literal=POSTGRES_USER=backstage -n backstage`. Get the postgres details from postgresql-config secret and decode.
+7. Restart backstage deployment if necessary. Ex: `kubectl rollout-restart deploy/backstage -n backstage`
+8. Once the pod is up and running, Login to the Backstage UI.
+9. Click on SignIn button. Username is user1 and get the password by decoding user1-password from keycloak-user-config secret Ex: `kubectl -n keycloak get secret keycloak-user-config -o jsonpath='{.data.user1-password}' | base64 -d; echo`
