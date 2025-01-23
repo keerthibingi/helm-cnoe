@@ -1,7 +1,7 @@
 # Installing Keycloak
 
-1. Clone the repo. git clone https://github.com/keerthibingi/helm-cnoe.git
-2. cd helm-cnoe/charts/keycloak
+1. Clone the repo.Ex: `git clone https://github.com/keerthibingi/helm-cnoe.git`
+2. `cd helm-cnoe/charts/keycloak`
 3. Edit values.yaml by passing host keycloak(Keycloak ingress) and set createIngress to true.
 4. Run the command `helm install kc . -f values.yaml -n keycloak --timeout=10m --create-namespace`
 5. Once keycloak is up and running, Login to the Keycloak UI.Click on Admin console.Username is cnoe-admin and get the password by decoding KEYCLOAK_ADMIN_PASSWORD from keycloak-config secret. Ex: `kubectl -n keycloak get secret keycloak-config -o jsonpath='{.data.KEYCLOAK_ADMIN_PASSWORD}' | base64 -d; echo` 
