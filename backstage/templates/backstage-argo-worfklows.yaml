@@ -3,7 +3,7 @@ kind: ClusterRole
 metadata:
   annotations:
     argocd.argoproj.io/tracking-id: backstage:rbac.authorization.k8s.io/ClusterRole:backstage/backstage-argo-worfklows
-  name: backstage-argo-worfklows
+  name: {{ .Release.Name }}-argo-worfklows
   namespace: {{ .Release.Namespace }}
 rules:
 - apiGroups:
