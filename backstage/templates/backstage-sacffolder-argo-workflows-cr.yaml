@@ -3,7 +3,7 @@ kind: ClusterRole
 metadata:
   annotations:
     argocd.argoproj.io/tracking-id: argo-workflows-templates:rbac.authorization.k8s.io/ClusterRole:argo/backstage-scaffolder-argo-workflows
-  name: backstage-scaffolder-argo-workflows
+  name: {{ .Release.Name }}-scaffolder-argo-workflows
   namespace: {{ .Release.Namespace }}
 rules:
 - apiGroups:
