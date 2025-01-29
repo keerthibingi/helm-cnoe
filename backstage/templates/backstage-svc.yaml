@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    argocd.argoproj.io/tracking-id: backstage:/Service:backstage/backstage
+  name: backstage
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+    - name: http
+      port: 7007
+      protocol: TCP
+      targetPort: http
+  selector:
+    app: backstage
+  sessionAffinity: None
+  type: ClusterIP

@@ -1,0 +1,20 @@
+# Database
+# The database vendor.
+db: postgres
+
+# The username of the database user.
+db-username: {{ .Values.postgresql.username }}
+db-url-host: {{ .Values.postgresql.host }}
+
+# Observability
+
+# If the server should expose healthcheck endpoints.
+#health-enabled=true
+
+# If the server should expose metrics endpoints.
+#metrics-enabled=true
+
+# The proxy address forwarding mode if the server is behind a reverse proxy.
+proxy: edge
+
+hostname-strict-backchannel: true

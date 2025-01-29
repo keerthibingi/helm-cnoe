@@ -1,0 +1,13 @@
+apiVersion: v2
+description:  CNOE with keycloak and backstage
+name: cnoe
+version: 24.4.1
+appVersion: 26.0.7
+home: https://cnoe.io/
+sources:
+- https://github.com/OpsMx/cnoe
+maintainers:
+- email: srinivas@opsmx.io
+  name: ksrinimba
+- email: saiteja.katabhatina@opsmx.io
+  name: saitejaopsmx

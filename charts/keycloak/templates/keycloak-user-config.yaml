@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  user1-password: {{ randAlpha 32 | b64enc }}
+immutable: false
+kind: Secret
+metadata:
+  name: keycloak-user-config
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+type: Opaque

@@ -1,0 +1,22 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    argocd.argoproj.io/tracking-id: backstage:rbac.authorization.k8s.io/ClusterRole:backstage/read-all
+  name: {{ .Release.Name }}-read-all
+  namespace: {{ .Release.Namespace }}
+rules:
+- apiGroups:
+  - '*'
+  resources:
+  - '*'
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - argoproj.io
+  resources:
+  - '*'
+  verbs:
+  - '*'

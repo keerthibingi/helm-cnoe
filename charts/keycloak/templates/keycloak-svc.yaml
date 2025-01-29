@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    argocd.argoproj.io/tracking-id: keycloak:/Service:keycloak/keycloak
+    argocd.argoproj.io/sync-wave: "1"
+  labels:
+    app: keycloak
+  name: keycloak
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: keycloak
+  sessionAffinity: None
+  type: ClusterIP

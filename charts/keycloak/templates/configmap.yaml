@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  keycloak.conf: |
+    {{- tpl (.Files.Get "config/keycloak.yaml") . | nindent 4 }}
+kind: ConfigMap
+metadata:
+  annotations:
+    argocd.argoproj.io/tracking-id: keycloak:/ConfigMap:keycloak/keycloak-config
+    argocd.argoproj.io/sync-wave: "1"
+  name: keycloak-config
