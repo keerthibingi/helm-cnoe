@@ -1,6 +1,6 @@
 # Installing Keycloak
 
-1. Clone the repo.Ex: `git clone https://github.com/keerthibingi/helm-cnoe.git`
+1. Clone the repo.Ex: `git clone https://github.com/OpsMx/helm-cnoe.git`
 2. `cd helm-cnoe/charts/keycloak`
 3. Edit values.yaml by passing host keycloak(Keycloak ingress) and set createIngress to true.
 4. Run the command `helm install kc . -f values.yaml -n keycloak --timeout=10m --create-namespace`
