@@ -16,3 +16,8 @@ global:
   imagePullSecrets: []
 
 projectID: <ENTER_Project_ID>
+
+aws:
+  enabled: true
+gcp:
+  enabled: true
