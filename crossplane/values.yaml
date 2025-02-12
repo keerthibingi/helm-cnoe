@@ -15,9 +15,9 @@ global:
   # </br> E.g. `imagePullSecrets: [myRegistryKeySecretName]`
   imagePullSecrets: []
 
-projectID: <ENTER_Project_ID>
 
 aws:
   enabled: true
 gcp:
   enabled: true
+  projectID: <ENTER_Project_ID>

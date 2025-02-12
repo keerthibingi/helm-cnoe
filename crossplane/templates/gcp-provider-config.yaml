@@ -4,7 +4,7 @@ kind: ProviderConfig
 metadata:
   name: default-gcp
 spec:
-  projectID: {{ .Values.projectID }}            # Change the project id
+  projectID: {{ .Values.gcp.projectID }}            # Change the project id
   credentials:
   credentials:
     impersonateServiceAccount:
