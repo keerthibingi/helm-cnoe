@@ -1,0 +1,15 @@
+apiVersion: gcp.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: default-gcp
+spec:
+  projectID: {{ .Values.projectID }}            # Change the project id
+  credentials:
+  credentials:
+    impersonateServiceAccount:
+      name: ""
+    source: Secret
+    secretRef:
+      namespace: {{ .Release.Namespace }}
+      name: gcp-secret
+      key: creds
